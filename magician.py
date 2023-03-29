@@ -55,7 +55,6 @@ def call_magician():
         card_amount = 11
 
     # 카드 나눠주기
-
     def devide_card(card, n):
         return [card[i: i+n] for i in range(0, len(card), n)]
 

@@ -8,28 +8,29 @@ class Monster(BaseCharactor):
 
 
 class Slime(Monster):
-    def __init__(self,lv):
+    def __init__(self, lv):
         self.name = 'Slime'
         self.lv = lv
-        self.max_hp = 100
+        self.max_hp = 100 + (lv * 5)
         self.hp = self.max_hp
-        self.max_mp = 0
+        self.max_mp = 3 + lv
         self.mp = self.max_mp
-        self.power = 5
-        self.magic_power = 0
-        self.avoid = 10 + lv*5
+        self.power = random.randint(2, 7) + lv
+        self.magic_power = 10 + lv
+        self.avoid = 10 + lv
+
 
 class Skeleton(Monster):
-    def __init__(self,lv):
+    def __init__(self, lv):
         self.name = 'Skeleton'
         self.lv = lv
-        self.max_hp = 120
+        self.max_hp = 120 + (lv*10)
         self.hp = self.max_hp
-        self.max_mp = 5
+        self.max_mp = 7 + lv
         self.mp = self.max_mp
-        self.power = 15 + lv*3
-        self.magic_power = 20
-        self.avoid = 10
+        self.power = random.randint(5, 10) + lv
+        self.magic_power = 20 + lv
+        self.avoid = 5 + lv
         self.attack_type = 3
 
     def bone_magic(self, other):
@@ -43,7 +44,7 @@ class Skeleton(Monster):
             text = f"{other.name}이(가) 쓰러졌습니다."
         return text
 
-    def skeleton_attack(self,other):
+    def skeleton_attack(self, other):
         # 마나 체크 후 공격 타입 지정
         if self.mp == self.max_mp:
             self.attack_type = 3
@@ -58,21 +59,21 @@ class Skeleton(Monster):
 
 
 class Zombie(Monster):
-    def __init__(self,lv):
+    def __init__(self, lv):
         self.name = 'Zombie'
         self.lv = lv
-        self.max_hp = 200 + lv*10
+        self.max_hp = 200 + (lv*10)
         self.hp = random.randrange(self.max_hp+1)
-        self.max_mp = 4
+        self.max_mp = 10 + lv
         self.mp = self.max_mp
-        self.power = random.randint(10, 15)
-        self.magic_power = 0
-        self.avoid = 10
+        self.power = random.randint(10, 15) + lv
+        self.magic_power = 5 +lv
+        self.avoid = 1 + lv
         self.attack_type = 3
 
-    def recovery(self,turn):
+    def recovery(self, turn):
         self.mp -= self.max_mp
-        # 턴 수 * 2로 회복 
+        # 턴 수 * 2로 회복
         recovery = turn*2
         self.hp += recovery
         if self.max_hp < self.hp:
@@ -82,7 +83,7 @@ class Zombie(Monster):
         {self.name}의 현재 HP:{self.hp}''']
         return text
 
-    def zombie_attack(self,other):
+    def zombie_attack(self, other):
         # 마나 체크 후 공격 타입 지정
         if self.mp == self.max_mp:
             self.attack_type = 3
@@ -98,6 +99,3 @@ class Zombie(Monster):
 # monster_list = [Slime(), Skeleton(), Zombie()]
 # # 랜덤 몬스터 생성
 # monster = random.choice(monster_list)
-
-
-

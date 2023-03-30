@@ -9,6 +9,16 @@ def intro():
     typing("안녕하세요, 무지성 탑에 어서오세요 !")
     time.sleep(1)
 
+def select_difficulty():
+    typing('난이도에 따라 몬스터의 수가 바뀝니다')
+    typing('쉬움 : 1, 보통 : 2, 어려움 : 3')
+    while True:
+        difficulty = input('난이도를 선택해주세요(1,2,3) : ')
+        if difficulty in ['1','2','3']:
+            break
+        else: typing('1,2,3 중에 하나를 골라주세요')
+    return difficulty
+
 
 def job_table(job_dict):
     console = Console()

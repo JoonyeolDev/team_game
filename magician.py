@@ -1,10 +1,7 @@
 import random
 import time
 import msvcrt
-
-# 카드 5개 되서 엔터치면 카드 가져오는 기능은 구현
-# 정답이 아닌데 엔터치면 벌칙으로 카드 한 장씩 뿌리는 건 구현 못 함
-
+from script import *
 
 def call_magician():
     # 몬스터가 랜덤으로 생성

@@ -1,4 +1,5 @@
 import random, time
+from script import *
 
 
 def call_sphinx():
@@ -17,18 +18,18 @@ def call_sphinx():
     print_writting = '_'*(len(word))
 
     time.sleep(1)
-    print('스핑크스가 출현했습니다.')
+    typing('스핑크스가 출현했습니다.')
     time.sleep(1.5)
-    print(f'스핑크스가 내는 문제를 맞추세요.')
+    typing(f'스핑크스가 내는 문제를 맞추세요.')
     time.sleep(1)
 
     while count > 0:
 
         time.sleep(0.5)
-        print(f'기회는 {count}번 남았습니다.')
+        typing(f'기회는 {count}번 남았습니다.')
 
         if answer == '':
-            user_put = input(print_writting).lower()
+            user_put = input(print_writting + ' : ').lower()
             for w in list(word):  # 처음에는 answer에 문자열 다 넣기
                 if w == user_put:
                     answer += w
@@ -37,7 +38,7 @@ def call_sphinx():
 
         else:
             time.sleep(0.5)
-            user_put = input(answer).lower()
+            user_put = input(answer + ' : ').lower()
 
             for idx, w in enumerate(list(word)):  # 두 번째 부터 정답인 문자만 교체
                 if w == user_put:
@@ -49,12 +50,12 @@ def call_sphinx():
 
         # 리스트 인덱스 값과 상관없이 같은 문자를 가지면 종료
         if sorted(answer) == sorted(word):
-            print(f'{answer} 정답입니다.')
+            typing(f'{answer} 정답입니다.')
             break
 
     # 기회 안에 못 풀면 빠꾸시키기
     if count == 0:
-        print('틀렸어요')
+        typing('틀렸어요')
 
     return
     # 에러
